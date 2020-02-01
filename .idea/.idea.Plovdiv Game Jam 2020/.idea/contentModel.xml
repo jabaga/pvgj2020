@@ -12,6 +12,7 @@
           <e p="ManagerRepair.cs" t="Include" />
           <e p="PlayerLlama.cs" t="Include" />
           <e p="PlayerRepair.cs" t="Include" />
+          <e p="Singleton.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="FailScreen.cs" t="Include" />
             <e p="MainMenu.cs" t="Include" />
