@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerLlama : MonoBehaviour
@@ -7,9 +8,8 @@ public class PlayerLlama : MonoBehaviour
     public Text opponentScore;
     public float moveSpeed = 12f;
     public Rigidbody2D rb;
-    public Animation animator;
+    public Animator animator;
     public Transform firepoint;
-
     public Transform aim;
     public GameObject bulletPrefab;
     public string playerNumber;
@@ -26,9 +26,11 @@ public class PlayerLlama : MonoBehaviour
 
     void Update()
     {
-
         movement.x = Input.GetAxisRaw(playerNumber + "Horizontal");
 
+        animator.SetBool("IsMovingForward",movement.x > 0);
+        animator.SetBool("IsMovingBackward",movement.x < 0);
+        
         var degreeChange = Input.GetAxisRaw(playerNumber + "Vertical");
         if (degreeChange != 0)
         {
@@ -53,17 +55,9 @@ public class PlayerLlama : MonoBehaviour
 
         void Shoot()
         {
-            GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            if (this.transform.localScale.x == 1)
-            {
-                rb.AddForce(firepoint.right * bulletforce, ForceMode2D.Impulse);
-            }
-            else
-            {
-                rb.AddForce(-1 * firepoint.right * bulletforce, ForceMode2D.Impulse);
-            }
-
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("Plunka") == false)
+                StartCoroutine(ShootCoroutine());
+            
 
         }
 
@@ -84,6 +78,25 @@ public class PlayerLlama : MonoBehaviour
         // - spawn bullet prefab
         // - pass bullet variables
         opponentScore.text = numberOfHitsTaken.ToString();
+    }
+
+    IEnumerator ShootCoroutine()
+    {
+        animator.SetTrigger("Shoot");
+        
+        yield return new WaitForSeconds(0.2f);
+            
+        GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (this.transform.localScale.x == 1)
+        {
+            rb.AddForce(firepoint.right * bulletforce, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(-1 * firepoint.right * bulletforce, ForceMode2D.Impulse);
+        }
+
     }
 
     void FixedUpdate()

@@ -204,7 +204,7 @@ MonoBehaviour:
   opponentScore: {fileID: 0}
   moveSpeed: 12
   rb: {fileID: 1866750798996957398}
-  animator: {fileID: 0}
+  animator: {fileID: 1866750799418935323}
   firepoint: {fileID: 1866750800604768260}
   aim: {fileID: 1866750798972618242}
   bulletPrefab: {fileID: 1264680223935802585, guid: eb2ee0ce373fd174bbcf606e2a713fcf,
