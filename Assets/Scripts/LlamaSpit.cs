@@ -26,9 +26,14 @@ public class LlamaSpit : MonoBehaviour
             //If the GameObject has the same tag as specified, output this message in the console
             Debug.Log("Do something else here");
         }
+        else if (collision.gameObject.tag == "Window")
+        {
+            //If the GameObject has the same tag as specified, output this message in the console
+            Debug.Log("Do something else here");
+        }
         else
         {
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
 }
