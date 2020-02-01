@@ -34,6 +34,7 @@ public class LlamaSpit : MonoBehaviour
         else
         {
             LoadRepairScene();
+            ManagerFarm.Instance.LoadRepairScene();
         }
     }
 }
