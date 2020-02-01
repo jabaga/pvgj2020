@@ -79,8 +79,8 @@ public class WindowPart : MonoBehaviour
         manager.p1MovingObj = null;
         manager.p2MovingObj = null;
 
-        go1.GetComponent<Image>().color = new Color(1,1,1,0.7f);
-        go2.GetComponent<Image>().color = new Color(1,1,1,0.7f);
+        go1.GetComponent<Image>().color = new Color(1,1,1,0.55f);
+        go2.GetComponent<Image>().color = new Color(1,1,1,0.55f);
         
         Destroy(go1.GetComponent<Button>());
         Destroy(go2.GetComponent<Button>());

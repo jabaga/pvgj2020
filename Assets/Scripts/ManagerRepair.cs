@@ -14,7 +14,12 @@ public class ManagerRepair : MonoBehaviour
     public GameObject p2MovingObj ;
     public GameObject backHolder;
     public StandaloneInputModule inputP1;
-    public StandaloneInputModule inputP2;
+    public GameObject baba;
+    public float babaSpeed;
+    public float timeLimit;
+    public Text timeUI;
+
+    private float time;
     
     void Start()
     {
@@ -28,10 +33,14 @@ public class ManagerRepair : MonoBehaviour
         }
 
         ActivateP1Select();
+
+        time = timeLimit;
     }
 
     void Update()
     {
+        time -= Time.deltaTime;
+        
         if (Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.Escape))
         {
             foreach (var g in windowPairs1)
@@ -54,6 +63,10 @@ public class ManagerRepair : MonoBehaviour
             
             ActivateP1Select();
         }
+        
+        baba.transform.localScale = new Vector3((baba.transform.localScale.x+babaSpeed*Time.deltaTime),(baba.transform.localScale.y+babaSpeed*Time.deltaTime),(baba.transform.localScale.z+babaSpeed*Time.deltaTime));
+
+        timeUI.text = (int) time + "";
     }
 
     void WindowClicked()
@@ -129,15 +142,15 @@ public class ManagerRepair : MonoBehaviour
 
     IEnumerator FlipInput(bool p1)
     {
-        Button b = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+        //Button b = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
         yield return null;
         //inputP1.enabled = p1;
         //inputP2.enabled = !p1;
         inputP1.verticalAxis = (p1) ? "P1Vertical" : "P2Vertical";
         inputP1.UpdateModule();
         //inputP2.UpdateModule();
-        yield return null;
-        b.Select();
+        //yield return null;
+        //b.Select();
     }
 
     public void DeactivateAll()
