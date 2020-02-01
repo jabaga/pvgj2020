@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 190801038}
   - component: {fileID: 190801037}
   - component: {fileID: 190801036}
-  - component: {fileID: 190801035}
   m_Layer: 5
   m_Name: Button 4-2
   m_TagString: Untagged
@@ -164,26 +163,6 @@ RectTransform:
   m_AnchoredPosition: {x: -171.6, y: 45.3}
   m_SizeDelta: {x: 272, y: 329}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!231 &190801035
-SpringJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190801033}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 1064625242}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: -3.86, y: 1.13}
-  m_ConnectedAnchor: {x: 0, y: 1.11}
-  m_AutoConfigureDistance: 0
-  m_Distance: 0.005
-  m_DampingRatio: 1
-  m_Frequency: 1
 --- !u!114 &190801036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,7 +485,7 @@ SpringJoint2D:
   m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 1064625242}
+  m_ConnectedRigidBody: {fileID: 1397334000}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
@@ -515,7 +494,7 @@ SpringJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
   m_DampingRatio: 1
-  m_Frequency: 1
+  m_Frequency: 3
 --- !u!114 &429996908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,7 +776,7 @@ SpringJoint2D:
   m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 1064625242}
+  m_ConnectedRigidBody: {fileID: 190801038}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
@@ -806,7 +785,7 @@ SpringJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
   m_DampingRatio: 1
-  m_Frequency: 1
+  m_Frequency: 3
 --- !u!114 &628662624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,18 +962,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windowPairs1:
-  - {fileID: 1844683536}
-  - {fileID: 1667596504}
-  - {fileID: 429996905}
-  - {fileID: 628662621}
-  windowPairs2:
   - {fileID: 1064625240}
   - {fileID: 1742479477}
   - {fileID: 1397333995}
   - {fileID: 190801033}
-  moveSpeed: 10
-  p1Moving: 0
-  p2Moving: 0
+  windowPairs2:
+  - {fileID: 1844683536}
+  - {fileID: 1667596504}
+  - {fileID: 429996905}
+  - {fileID: 628662621}
+  moveSpeed: 15
+  p1MovingObj: {fileID: 0}
+  p2MovingObj: {fileID: 0}
 --- !u!4 &870135318
 Transform:
   m_ObjectHideFlags: 0
@@ -1431,7 +1410,6 @@ GameObject:
   - component: {fileID: 1397334000}
   - component: {fileID: 1397333999}
   - component: {fileID: 1397333998}
-  - component: {fileID: 1397333997}
   m_Layer: 5
   m_Name: Button 3-2
   m_TagString: Untagged
@@ -1459,26 +1437,6 @@ RectTransform:
   m_AnchoredPosition: {x: -170, y: 10.1}
   m_SizeDelta: {x: 339, y: 318}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!231 &1397333997
-SpringJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397333995}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 1064625242}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: -3.86, y: 1.13}
-  m_ConnectedAnchor: {x: 0, y: 1.11}
-  m_AutoConfigureDistance: 0
-  m_Distance: 0.005
-  m_DampingRatio: 1
-  m_Frequency: 1
 --- !u!114 &1397333998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1739,7 +1697,7 @@ SpringJoint2D:
   m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 1064625242}
+  m_ConnectedRigidBody: {fileID: 1742479482}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
@@ -1748,7 +1706,7 @@ SpringJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
   m_DampingRatio: 1
-  m_Frequency: 1
+  m_Frequency: 3
 --- !u!114 &1667596507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2014,7 +1972,6 @@ GameObject:
   - component: {fileID: 1742479482}
   - component: {fileID: 1742479481}
   - component: {fileID: 1742479480}
-  - component: {fileID: 1742479479}
   m_Layer: 5
   m_Name: Button 2-2
   m_TagString: Untagged
@@ -2042,26 +1999,6 @@ RectTransform:
   m_AnchoredPosition: {x: -170, y: -28.5}
   m_SizeDelta: {x: 313, y: 332}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!231 &1742479479
-SpringJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1742479477}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 1064625242}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: -3.86, y: 1.13}
-  m_ConnectedAnchor: {x: 0, y: 1.11}
-  m_AutoConfigureDistance: 0
-  m_Distance: 0.005
-  m_DampingRatio: 1
-  m_Frequency: 1
 --- !u!114 &1742479480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2368,7 +2305,7 @@ SpringJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
   m_DampingRatio: 1
-  m_Frequency: 1
+  m_Frequency: 3
 --- !u!60 &1844683543
 PolygonCollider2D:
   m_ObjectHideFlags: 0

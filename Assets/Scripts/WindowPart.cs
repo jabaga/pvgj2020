@@ -64,14 +64,25 @@ public class WindowPart : MonoBehaviour
         
         if (joint != null)
         {
-            for (int i = 0; i < manager.windowPairs1.Count; i++)
+            if (manager.CheckPair(gameObject, other.attachedRigidbody.gameObject))
             {
-                if (manager.windowPairs1[i] == gameObject && manager.windowPairs2[i] == other.gameObject && other.gameObject.GetComponent<WindowPart>().canMove == true)
-                {
-                    joint.enabled = true;
-                }
+                joint.enabled = true;
+                StartCoroutine(PairPartsCoroutine(gameObject, other.attachedRigidbody.gameObject));
             }
         }
+    }
+
+    IEnumerator PairPartsCoroutine(GameObject go1, GameObject go2)
+    {
+        yield return new WaitForSeconds(0.5f);
+        
+        manager.p1MovingObj = null;
+        manager.p2MovingObj = null;
+        
+        Destroy(go1.GetComponent<Button>());
+        Destroy(go2.GetComponent<Button>());
+        
+        manager.ActivateP1Select();
     }
 
     public void Select()
@@ -79,8 +90,8 @@ public class WindowPart : MonoBehaviour
         canMove = true;
         transform.localScale = originalScale * 2f;
         collider.isTrigger = false;
-        print("selected "+ gameObject.name);
         //Activate();
+        
         if (isP1 == true)
             manager.p1MovingObj = gameObject;
         else
@@ -102,11 +113,13 @@ public class WindowPart : MonoBehaviour
 
     public void Activate()
     {
-        button.enabled = true;
+        if(button != null)
+            button.enabled = true;
     }
     public void Deactivate()
     {
-        button.enabled = false;
+        if(button != null)
+            button.enabled = false;
     }
     
 }
