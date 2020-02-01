@@ -48,12 +48,24 @@ public class PlayerLlama : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(firepoint.right * bulletforce, ForceMode2D.Impulse);
+            if (this.transform.localScale.x == 1)
+            {
+                rb.AddForce(firepoint.right * bulletforce, ForceMode2D.Impulse);
+            }
+            else
+            {
+                rb.AddForce(-1 * firepoint.right * bulletforce, ForceMode2D.Impulse);
+            }
+
 
         }
 
         void ChangeAimLine(float degree)
         {
+            if (this.transform.localScale.x != 1)
+            {
+                degree *= -1;
+            }
             var rotation = Quaternion.Euler(0, 0, degree);
             firepoint.rotation = rotation;
             aim.rotation = rotation;
