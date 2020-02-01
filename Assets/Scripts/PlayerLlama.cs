@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerLlama : MonoBehaviour
 {
-
+    public int numberOfHitsTaken = 0;
+    public Text opponentScore;
     public float moveSpeed = 12f;
     public Rigidbody2D rb;
     public Animation animator;
@@ -16,6 +18,11 @@ public class PlayerLlama : MonoBehaviour
 
     public float bulletFireDegree = 0;
     Vector2 movement;
+
+    void Start()
+    {
+        numberOfHitsTaken = 0;
+    }
 
     void Update()
     {
@@ -76,10 +83,30 @@ public class PlayerLlama : MonoBehaviour
         // check for bullet input
         // - spawn bullet prefab
         // - pass bullet variables
+        opponentScore.text = numberOfHitsTaken.ToString();
     }
 
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // check if collided with window
+        // - play impact particles
+        // - play SFX
+        // - load RepairScene via ManagerFarm
+
+        // check if collided with Llama
+        // - play impact particles
+        // - play SFX
+        // - update UI via UI Score
+        Debug.Log(collision.gameObject.name.Contains("Bullet"));
+        if (collision.gameObject.name.Contains("Bullet"))
+        {
+            numberOfHitsTaken++;
+        }
+
     }
 }

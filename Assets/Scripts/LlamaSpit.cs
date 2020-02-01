@@ -29,9 +29,8 @@ public class LlamaSpit : MonoBehaviour
         else if (collision.gameObject.tag == "Window")
         {
             //If the GameObject has the same tag as specified, output this message in the console
-            Debug.Log("Bullet Hit Window");
-            // LoadRepairScene();
-            // ManagerFarm.Instance.LoadRepairScene();
+
+            ManagerFarm.Instance.LoadRepairScene();
         }
         else
         {
