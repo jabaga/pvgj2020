@@ -4,6 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
+    public void Update()
+    {
+        if (Input.GetButtonDown("Start"))
+        {
+            this.PlayGame();
+        }
+
+        if (Input.GetButtonDown("End"))
+        {
+            this.QuitGame();
+        }
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
