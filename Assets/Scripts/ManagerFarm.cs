@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManagerFarm : MonoBehaviour
+public class ManagerFarm : Singleton<ManagerFarm>
 {
     void Start()
     {

@@ -33,7 +33,8 @@ public class LlamaSpit : MonoBehaviour
         }
         else
         {
-            // Destroy(gameObject);
+            LoadRepairScene();
+            ManagerFarm.Instance.LoadRepairScene();
         }
     }
 }
