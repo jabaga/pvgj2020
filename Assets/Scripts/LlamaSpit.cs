@@ -29,12 +29,11 @@ public class LlamaSpit : MonoBehaviour
         else if (collision.gameObject.tag == "Window")
         {
             //If the GameObject has the same tag as specified, output this message in the console
-            Debug.Log("Do something else here");
+            ManagerFarm.Instance.LoadRepairScene();
         }
         else
         {
-            LoadRepairScene();
-            ManagerFarm.Instance.LoadRepairScene();
+           
         }
     }
 }
