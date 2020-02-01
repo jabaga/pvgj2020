@@ -160,6 +160,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1264680223935802585, guid: eb2ee0ce373fd174bbcf606e2a713fcf,
     type: 3}
   bulletforce: 20
+  playerNumber: P1
 --- !u!50 &86674369
 Rigidbody2D:
   serializedVersion: 4
