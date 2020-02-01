@@ -16,6 +16,8 @@ public class WindowPart : MonoBehaviour
     private Vector3 originalPosition;
     private Vector3 originalScale;
     private Button button;
+
+    private bool isP1;
     
     void Start()
     {
@@ -30,18 +32,29 @@ public class WindowPart : MonoBehaviour
             joint.enabled = false;
         
         collider.isTrigger = true;
+
+        isP1 = false;
+        foreach (var g in manager.windowPairs1)
+        {
+            if (g == gameObject)
+            {
+                isP1 = true;
+                break;
+            }
+        }
     }
 
     void Update()
     {
-        if (EventSystem.current.currentSelectedGameObject == gameObject && canMove == true)
+        if ((manager.p1MovingObj == gameObject || manager.p2MovingObj == gameObject) && canMove == true)
         {
-            if(Input.GetKey(KeyCode.LeftArrow))
-                body.AddForce(new Vector2(-1f * manager.moveSpeed, 0));
-            if(Input.GetKey(KeyCode.RightArrow))
-                body.AddForce(new Vector2(1f * manager.moveSpeed, 0));
-                
+            string playerPrefix = "P1";
+            if (isP1 == false)
+                playerPrefix = "P2";
+            
+            body.AddForce(new Vector2(Input.GetAxisRaw(playerPrefix+"Horizontal") * manager.moveSpeed, Input.GetAxisRaw(playerPrefix+"Vertical") * manager.moveSpeed));
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -64,17 +77,36 @@ public class WindowPart : MonoBehaviour
     public void Select()
     {
         canMove = true;
-        button.enabled = true;
         transform.localScale = originalScale * 2f;
         collider.isTrigger = false;
+        print("selected "+ gameObject.name);
+        //Activate();
+        if (isP1 == true)
+            manager.p1MovingObj = gameObject;
+        else
+            manager.p2MovingObj = gameObject;
     }
+    
     public void Deselect()
     {
         canMove = false;
-        button.enabled = false;
         transform.position = originalPosition;
         transform.localScale = originalScale;
         collider.isTrigger = true;
+        if (isP1 == true)
+            manager.p1MovingObj = null;
+        else
+            manager.p2MovingObj = null;
+        Deactivate();
+    }
+
+    public void Activate()
+    {
+        button.enabled = true;
+    }
+    public void Deactivate()
+    {
+        button.enabled = false;
     }
     
 }
