@@ -13,6 +13,8 @@ public class ManagerRepair : MonoBehaviour
     public GameObject p1MovingObj;
     public GameObject p2MovingObj ;
     public GameObject backHolder;
+    public StandaloneInputModule inputP1;
+    public StandaloneInputModule inputP2;
     
     void Start()
     {
@@ -95,7 +97,10 @@ public class ManagerRepair : MonoBehaviour
 
             g.GetComponent<WindowPart>().Deactivate();
         }
+
+        StartCoroutine(FlipInput(true));
     }
+
     public void ActivateP2Select()
     {
         if (p2MovingObj != null)
@@ -118,6 +123,21 @@ public class ManagerRepair : MonoBehaviour
             g.GetComponent<WindowPart>().Activate();
             g.GetComponent<Button>().Select();
         }
+
+        StartCoroutine(FlipInput(false));
+    }
+
+    IEnumerator FlipInput(bool p1)
+    {
+        Button b = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+        yield return null;
+        //inputP1.enabled = p1;
+        //inputP2.enabled = !p1;
+        inputP1.verticalAxis = (p1) ? "P1Vertical" : "P2Vertical";
+        inputP1.UpdateModule();
+        //inputP2.UpdateModule();
+        yield return null;
+        b.Select();
     }
 
     public void DeactivateAll()
