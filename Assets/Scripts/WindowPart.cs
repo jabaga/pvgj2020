@@ -10,7 +10,7 @@ public class WindowPart : MonoBehaviour
     public ManagerRepair manager;
     public bool canMove = false;
     
-    private Joint2D joint;
+    private SpringJoint2D joint;
     private Rigidbody2D body;
     private Collider2D collider;
     private Vector3 originalPosition;
@@ -21,7 +21,7 @@ public class WindowPart : MonoBehaviour
     
     void Start()
     {
-        joint = GetComponent<Joint2D>();
+        joint = GetComponent<SpringJoint2D>();
         body = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         button = GetComponent<Button>();
@@ -81,6 +81,15 @@ public class WindowPart : MonoBehaviour
         
         Destroy(go1.GetComponent<Button>());
         Destroy(go2.GetComponent<Button>());
+        
+        Destroy(go1.GetComponent<Collider2D>());
+        Destroy(go2.GetComponent<Collider2D>());
+        
+        go1.transform.SetParent(manager.backHolder.transform);
+        go2.transform.SetParent(manager.backHolder.transform);
+
+        go1.GetComponent<TargetJoint2D>().enabled = true;
+        go2.GetComponent<TargetJoint2D>().enabled = true;
         
         manager.ActivateP1Select();
     }

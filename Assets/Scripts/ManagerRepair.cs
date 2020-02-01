@@ -12,6 +12,7 @@ public class ManagerRepair : MonoBehaviour
     public float moveSpeed;
     public GameObject p1MovingObj;
     public GameObject p2MovingObj ;
+    public GameObject backHolder;
     
     void Start()
     {
