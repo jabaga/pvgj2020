@@ -17,6 +17,7 @@ public class PlayerLlama : MonoBehaviour
     {
 
         movement.x = Input.GetAxisRaw("P1Horizontal");
+      
 
         if (Input.GetButtonDown("P1Fire"))
         {
