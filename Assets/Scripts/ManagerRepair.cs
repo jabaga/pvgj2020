@@ -43,24 +43,20 @@ public class ManagerRepair : MonoBehaviour
     {
         time -= Time.deltaTime;
 
-        if ((int)time <= 0)
+        
+        if (frontHolder.transform.childCount == 0)
+        {
+            SceneManager.LoadScene("Win Scene", LoadSceneMode.Single);
+            return;
+        }
+        
+        if (time <= 0)
         {
             if (frontHolder.transform.childCount > 0)
             {
-                SceneManager.LoadScene("Repair Scene", LoadSceneMode.Single);
+                SceneManager.LoadScene("Fail Scene", LoadSceneMode.Single);
                 return;
             }
-            else
-            {
-                SceneManager.LoadScene("Farm Scene", LoadSceneMode.Single);
-                return;
-            }
-
-        }
-        else if (frontHolder.transform.childCount == 0)
-        {
-            SceneManager.LoadScene("Farm Scene", LoadSceneMode.Single);
-            return;
         }
 
 

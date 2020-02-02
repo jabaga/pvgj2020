@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Repair Scene.unity
     guid: 280ae7d17dceeb94f870c4cd39de20f0
+  - enabled: 1
+    path: Assets/Scenes/Fail Scene.unity
+    guid: 03674b1c3db16b342989308dd2072df2
+  - enabled: 1
+    path: Assets/Scenes/Win Scene.unity
+    guid: d8008d0cee9e6a54a9151c8fc299a92c
   m_configObjects: {}
