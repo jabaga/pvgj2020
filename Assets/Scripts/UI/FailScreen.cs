@@ -7,7 +7,6 @@ public class FailScreen : MonoBehaviour
 {
     public float time = 10f;
     
-    // Start is called before the first frame update
     void Start()
     {
         Invoke("MainMenu", time);
@@ -16,11 +15,5 @@ public class FailScreen : MonoBehaviour
     void MainMenu()
     {
             SceneManager.LoadScene("Menu Scene", LoadSceneMode.Single);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
