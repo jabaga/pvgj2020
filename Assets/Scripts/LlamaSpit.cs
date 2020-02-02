@@ -2,35 +2,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class LlamaSpit : MonoBehaviour
 {
+    public AudioSource[] audio;
+    
     void Start()
     {
-        // apply forces
+        int rand = Random.Range(0, audio.Length);
+        audio[rand].Play();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // check if collided with window
-        // - play impact particles
-        // - play SFX
-        // - load RepairScene via ManagerFarm
-
-        // check if collided with Llama
-        // - play impact particles
-        // - play SFX
-        // - update UI via UI Score
         if (collision.gameObject.tag == "Player")
         {
-            //If the GameObject has the same tag as specified, output this message in the console
             Debug.Log("Bullet Hit Player");
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Window")
         {
-            //If the GameObject has the same tag as specified, output this message in the console
-            ManagerFarm.Instance.LoadRepairScene();
+            print("aaaaaaaaaaaaaa");
+            ManagerFarm.Instance.StartCoroutine(ManagerFarm.Instance.LoadRepairScene());
             Destroy(gameObject);
         }
         else

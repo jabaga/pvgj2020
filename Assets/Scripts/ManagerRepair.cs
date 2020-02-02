@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ManagerRepair : MonoBehaviour
@@ -40,7 +41,13 @@ public class ManagerRepair : MonoBehaviour
     void Update()
     {
         time -= Time.deltaTime;
-        
+
+        if (time == 0)
+        {
+            SceneManager.LoadScene("Repair Scene", LoadSceneMode.Single);
+            return;
+        }
+
         if (Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.Escape))
         {
             foreach (var g in windowPairs1)
