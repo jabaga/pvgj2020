@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ManagerFarm : Singleton<ManagerFarm>
 {
+    public AudioSource windowBreakSound;
+    public GameObject windowBreakParticle;
+    
     public IEnumerator LoadRepairScene()
     {
-        // SFX
-        // PARTICLE
+        windowBreakSound.Play();
         
         yield return new WaitForSeconds(1f);
 

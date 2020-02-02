@@ -20,18 +20,11 @@ public class LlamaSpit : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Bullet Hit Player");
-            Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Window")
         {
-            print("aaaaaaaaaaaaaa");
             ManagerFarm.Instance.StartCoroutine(ManagerFarm.Instance.LoadRepairScene());
-            Destroy(gameObject);
         }
-        else
-        {
-            Debug.Log("Bullet didn't hit Player or Window");
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
