@@ -93,6 +93,17 @@ public class WindowPart : MonoBehaviour
 
         go1.GetComponent<TargetJoint2D>().enabled = true;
         go2.GetComponent<TargetJoint2D>().enabled = true;
+
+        int index = manager.windowPairs1.IndexOf(go1);
+        if(index == -1)
+            index = manager.windowPairs1.IndexOf(go2);
+
+        manager.hrachki[index].GetComponent<Image>().enabled = false;
+        manager.hrachki[index].SetActive(true);
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        manager.hrachki[index].GetComponent<Image>().enabled = true;
         
         manager.ActivateP1Select();
     }
