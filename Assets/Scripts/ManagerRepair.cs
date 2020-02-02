@@ -167,6 +167,7 @@ public class ManagerRepair : MonoBehaviour
     {
         yield return null;
         inputP1.verticalAxis = (p1) ? "P1Vertical" : "P2Vertical";
+        inputP1.submitButton = (p1) ? "P1Fire" : "P2Fire";
         inputP1.UpdateModule();
     }
 

@@ -13,6 +13,7 @@ public class PlayerLlama : MonoBehaviour
     public Transform aim;
     public GameObject bulletPrefab;
     public string playerNumber;
+    public AudioSource walkAudio;
 
     public float bulletforce = 20f;
 
@@ -30,7 +31,17 @@ public class PlayerLlama : MonoBehaviour
 
         animator.SetBool("IsMovingForward",movement.x > 0);
         animator.SetBool("IsMovingBackward",movement.x < 0);
-        
+
+        if (movement.x != 0 && walkAudio.isPlaying == false)
+        {
+            walkAudio.Play();
+        }
+        else
+        {
+            walkAudio.Stop();
+        }
+
+
         var degreeChange = Input.GetAxisRaw(playerNumber + "Vertical");
         if (degreeChange != 0)
         {
@@ -82,6 +93,9 @@ public class PlayerLlama : MonoBehaviour
 
     IEnumerator ShootCoroutine()
     {
+        int rand = Random.Range(0, ManagerFarm.Instance.audio.Length);
+        ManagerFarm.Instance.audio[rand].Play();
+        
         animator.SetTrigger("Shoot");
         
         yield return new WaitForSeconds(0.2f);

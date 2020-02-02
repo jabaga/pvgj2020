@@ -9,8 +9,6 @@ public class LlamaSpit : MonoBehaviour
 {
     void Start()
     {
-        int rand = Random.Range(0, ManagerFarm.Instance.audio.Length);
-        ManagerFarm.Instance.audio[rand].Play();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
