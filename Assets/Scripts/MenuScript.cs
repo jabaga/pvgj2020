@@ -18,7 +18,7 @@ public class MenuScript : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Farm Scene", LoadSceneMode.Single);
     }
 
     public void QuitGame()

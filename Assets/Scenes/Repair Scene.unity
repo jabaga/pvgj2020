@@ -1305,6 +1305,7 @@ MonoBehaviour:
   p1MovingObj: {fileID: 0}
   p2MovingObj: {fileID: 0}
   backHolder: {fileID: 209195116}
+  frontHolder: {fileID: 577643451}
   inputP1: {fileID: 1369379501}
   baba: {fileID: 1931894641}
   babaSpeed: 0.7
