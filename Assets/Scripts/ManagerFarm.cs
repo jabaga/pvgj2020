@@ -7,7 +7,8 @@ public class ManagerFarm : Singleton<ManagerFarm>
 {
     public AudioSource windowBreakSound;
     public GameObject windowBreakParticle;
-    
+    public AudioSource[] audio;
+
     public IEnumerator LoadRepairScene()
     {
         windowBreakSound.Play();

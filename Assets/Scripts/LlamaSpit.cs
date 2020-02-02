@@ -7,12 +7,10 @@ using Random = UnityEngine.Random;
 
 public class LlamaSpit : MonoBehaviour
 {
-    public AudioSource[] audio;
-    
     void Start()
     {
-        int rand = Random.Range(0, audio.Length);
-        audio[rand].Play();
+        int rand = Random.Range(0, ManagerFarm.Instance.audio.Length);
+        ManagerFarm.Instance.audio[rand].Play();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -23,6 +21,8 @@ public class LlamaSpit : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Window")
         {
+            collision.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+        
             ManagerFarm.Instance.StartCoroutine(ManagerFarm.Instance.LoadRepairScene());
         }
         Destroy(gameObject);
