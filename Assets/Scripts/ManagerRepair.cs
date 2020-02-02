@@ -20,6 +20,7 @@ public class ManagerRepair : MonoBehaviour
     public float babaSpeed;
     public float timeLimit;
     public Text timeUI;
+    public List<GameObject> hrachki;
 
     private float time;
 
@@ -39,18 +40,24 @@ public class ManagerRepair : MonoBehaviour
         time = timeLimit;
     }
 
+    private bool won = false;
+    
     void Update()
     {
         time -= Time.deltaTime;
 
-        
         if (frontHolder.transform.childCount == 0)
         {
-            SceneManager.LoadScene("Win Scene", LoadSceneMode.Single);
+            if (won == false)
+            {
+                won = true;
+                StartCoroutine(WinCoroutine());
+            }
+
             return;
         }
         
-        if (time <= 0)
+        if (time <= 0 && won == false)
         {
             if (frontHolder.transform.childCount > 0)
             {
@@ -86,6 +93,13 @@ public class ManagerRepair : MonoBehaviour
         baba.transform.localScale = new Vector3((baba.transform.localScale.x + babaSpeed * Time.deltaTime), (baba.transform.localScale.y + babaSpeed * Time.deltaTime), (1));
 
         timeUI.text = (int)time + "";
+    }
+
+    private IEnumerator WinCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        SceneManager.LoadScene("Win Scene", LoadSceneMode.Single);
     }
 
     void WindowClicked()
