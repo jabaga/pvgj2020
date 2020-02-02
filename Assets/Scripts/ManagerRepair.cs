@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class ManagerRepair : MonoBehaviour
 {
     public List<GameObject> windowPairs1;
     public List<GameObject> windowPairs2;
     public float moveSpeed;
     public GameObject p1MovingObj;
-    public GameObject p2MovingObj ;
+    public GameObject p2MovingObj;
     public GameObject backHolder;
     public StandaloneInputModule inputP1;
     public GameObject baba;
@@ -20,7 +20,7 @@ public class ManagerRepair : MonoBehaviour
     public Text timeUI;
 
     private float time;
-    
+
     void Start()
     {
         foreach (var g in windowPairs1)
@@ -40,19 +40,23 @@ public class ManagerRepair : MonoBehaviour
     void Update()
     {
         time -= Time.deltaTime;
-        
+        if ((int)time < 0)
+        {
+            this.EndGame();
+        }
+
         if (Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.Escape))
         {
             foreach (var g in windowPairs1)
             {
-                if(g.GetComponent<Button>() == null)
+                if (g.GetComponent<Button>() == null)
                     continue;
 
                 g.GetComponent<WindowPart>().Deselect();
             }
             foreach (var g in windowPairs2)
             {
-                if(g.GetComponent<Button>() == null)
+                if (g.GetComponent<Button>() == null)
                     continue;
 
                 g.GetComponent<WindowPart>().Deselect();
@@ -60,19 +64,19 @@ public class ManagerRepair : MonoBehaviour
 
             p1MovingObj = null;
             p2MovingObj = null;
-            
+
             ActivateP1Select();
         }
-        
-        baba.transform.localScale = new Vector3((baba.transform.localScale.x+babaSpeed*Time.deltaTime),(baba.transform.localScale.y+babaSpeed*Time.deltaTime),(1));
 
-        timeUI.text = (int) time + "";
+        baba.transform.localScale = new Vector3((baba.transform.localScale.x + babaSpeed * Time.deltaTime), (baba.transform.localScale.y + babaSpeed * Time.deltaTime), (1));
+
+        timeUI.text = (int)time + "";
     }
 
     void WindowClicked()
     {
         bool p1Selected = windowPairs1.Contains(EventSystem.current.currentSelectedGameObject);
-        
+
         EventSystem.current.currentSelectedGameObject.GetComponent<WindowPart>().Select();
 
         if (p1MovingObj == null || p2MovingObj == null)
@@ -93,19 +97,19 @@ public class ManagerRepair : MonoBehaviour
     {
         if (p1MovingObj != null)
             return;
-        
-        
+
+
         foreach (var g in windowPairs1)
         {
-            if(g.GetComponent<Button>() == null)
+            if (g.GetComponent<Button>() == null)
                 continue;
-            
+
             g.GetComponent<WindowPart>().Activate();
             g.GetComponent<Button>().Select();
         }
         foreach (var g in windowPairs2)
         {
-            if(g.GetComponent<Button>() == null)
+            if (g.GetComponent<Button>() == null)
                 continue;
 
             g.GetComponent<WindowPart>().Deactivate();
@@ -118,19 +122,19 @@ public class ManagerRepair : MonoBehaviour
     {
         if (p2MovingObj != null)
             return;
-        
-        
+
+
         foreach (var g in windowPairs1)
         {
-            if(g.GetComponent<Button>() == null)
+            if (g.GetComponent<Button>() == null)
                 continue;
 
             g.GetComponent<WindowPart>().Deactivate();
-            
+
         }
         foreach (var g in windowPairs2)
         {
-            if(g.GetComponent<Button>() == null)
+            if (g.GetComponent<Button>() == null)
                 continue;
 
             g.GetComponent<WindowPart>().Activate();
@@ -151,14 +155,14 @@ public class ManagerRepair : MonoBehaviour
     {
         foreach (var g in windowPairs1)
         {
-            if(g.GetComponent<Button>() == null)
+            if (g.GetComponent<Button>() == null)
                 continue;
 
             g.GetComponent<WindowPart>().Deactivate();
         }
         foreach (var g in windowPairs2)
         {
-            if(g.GetComponent<Button>() == null)
+            if (g.GetComponent<Button>() == null)
                 continue;
 
             g.GetComponent<WindowPart>().Deactivate();
@@ -171,5 +175,10 @@ public class ManagerRepair : MonoBehaviour
         int go2Key = (windowPairs1.Contains(go2)) ? windowPairs1.IndexOf((go2)) : windowPairs2.IndexOf((go2));
 
         return go1Key == go2Key;
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene(3);
     }
 }
